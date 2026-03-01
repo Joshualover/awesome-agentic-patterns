@@ -1,249 +1,292 @@
-# Awesome Agentic Patterns
+# Awesome Agentic Patterns 🚀
 
-![Awesome Agentic Patterns](/agentic-patterns.jpeg)
+[![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-A curated catalogue of **agentic AI patterns** — real‑world tricks, workflows, and mini‑architectures that help autonomous or semi‑autonomous AI agents get useful work done in production.
+A curated catalogue of awesome agentic AI patterns, architectures, and design principles for building autonomous AI systems.
 
-> **Why?**
-> Tutorials show toy demos. Real products hide the messy bits. This list surfaces the repeatable patterns that bridge the gap so we can all ship smarter, faster agents.
+> **Agentic AI** refers to AI systems that can autonomously pursue goals, make decisions, and take actions with minimal human intervention.
 
----
+## Contents
 
-## What counts as a pattern?
-
-* **Repeatable** – more than one team is using it.
-* **Agent‑centric** – improves how an AI agent senses, reasons, or acts.
-* **Traceable** – backed by a public reference: blog post, talk, repo, or paper.
-
-If your link ticks those boxes, it belongs here.
-
----
-
-## Quick Tour of Categories
-
-<!-- AUTO-GENERATED TOC START -->
-|  Category                                              |  What you'll find                                         |
-| ------------------------------------------------------ | --------------------------------------------------------- |
-| [**Context & Memory**](#context-memory)                | Sliding‑window curation, vector cache, episodic memory    |
-| [**Feedback Loops**](#feedback-loops)                  | Compilers, CI, human review, self‑healing retries         |
-| [**Learning & Adaptation**](#learning-adaptation)      | Agent RFT, skill libraries, variance‑based RL             |
-| [**Orchestration & Control**](#orchestration-control)  | Task decomposition, sub‑agent spawning, tool routing      |
-| [**Reliability & Eval**](#reliability-eval)            | Guardrails, eval harnesses, logging, reproducibility      |
-| [**Security & Safety**](#security-safety)              | Isolated VMs, PII tokenization, security scanning         |
-| [**Tool Use & Environment**](#tool-use-environment)    | Shell, browser, DB, Playwright, sandbox tricks            |
-| [**UX & Collaboration**](#ux-collaboration)            | Prompt hand‑offs, staged commits, async background agents |
-<!-- AUTO-GENERATED TOC END -->
-
-*Categories are fluid — open a PR if you see a better slice!*
-The tables below are auto‑generated from the `patterns/` folder.
+- [Context & Memory](#context--memory)
+- [Feedback Loops](#feedback-loops)
+- [Learning & Adaptation](#learning--adaptation)
+- [Orchestration & Control](#orchestration--control)
+- [Reliability & Eval](#reliability--eval)
+- [Security & Safety](#security--safety)
+- [Tool Use & Environment](#tool-use--environment)
+- [UX & Collaboration](#ux--collaboration)
 
 ---
 
-<!-- …existing content above… -->
+## Context & Memory
 
-<!-- AUTO-GENERATED PATTERNS START -->
+Patterns for managing state, context, and memory in agentic systems.
 
-### <a name="context-memory"></a>Context & Memory
+### Sliding-Window Curation
+- **Description**: Dynamically manage context window by curating relevant information
+- **Use Case**: Long-running conversations where full history exceeds token limits
+- **Example**: Keep recent N messages + summarized older context + key facts
+- **Reference**: [LangChain Memory](https://python.langchain.com/docs/modules/memory/)
 
-- [Agent-Powered Codebase Q&A / Onboarding](patterns/agent-powered-codebase-qa-onboarding.md) <span class='updated-badge'>UPDATED</span>
-- [Context Window Anxiety Management](patterns/context-window-anxiety-management.md) <span class='updated-badge'>UPDATED</span>
-- [Context Window Auto-Compaction](patterns/context-window-auto-compaction.md)
-- [Context-Minimization Pattern](patterns/context-minimization-pattern.md) <span class='updated-badge'>UPDATED</span>
-- [Curated Code Context Window](patterns/curated-code-context-window.md) <span class='updated-badge'>UPDATED</span>
-- [Curated File Context Window](patterns/curated-file-context-window.md) <span class='updated-badge'>UPDATED</span>
-- [Dynamic Context Injection](patterns/dynamic-context-injection.md) <span class='updated-badge'>UPDATED</span>
-- [Episodic Memory Retrieval & Injection](patterns/episodic-memory-retrieval-injection.md) <span class='updated-badge'>UPDATED</span>
-- [Filesystem-Based Agent State](patterns/filesystem-based-agent-state.md) <span class='updated-badge'>UPDATED</span>
-- [Layered Configuration Context](patterns/layered-configuration-context.md) <span class='updated-badge'>UPDATED</span>
-- [Memory Synthesis from Execution Logs](patterns/memory-synthesis-from-execution-logs.md) <span class='updated-badge'>UPDATED</span>
-- [Proactive Agent State Externalization](patterns/proactive-agent-state-externalization.md) <span class='updated-badge'>UPDATED</span>
-- [Progressive Disclosure for Large Files](patterns/progressive-disclosure-large-files.md)
-- [Prompt Caching via Exact Prefix Preservation](patterns/prompt-caching-via-exact-prefix-preservation.md)
-- [Self-Identity Accumulation](patterns/self-identity-accumulation.md) <span class='updated-badge'>UPDATED</span>
-- [Semantic Context Filtering Pattern](patterns/semantic-context-filtering.md)
-- [Working Memory via TodoWrite](patterns/working-memory-via-todos.md)
+### Vector Cache
+- **Description**: Store and retrieve information using vector embeddings
+- **Use Case**: Semantic search over agent's knowledge base
+- **Example**: Embed documents, store in vector DB, retrieve by semantic similarity
+- **Tools**: [Pinecone](https://www.pinecone.io/), [Weaviate](https://weaviate.io/), [Chroma](https://www.trychroma.com/)
 
-### <a name="feedback-loops"></a>Feedback Loops
-
-- [AI-Assisted Code Review / Verification](patterns/ai-assisted-code-review-verification.md) <span class='updated-badge'>UPDATED</span>
-- [Background Agent with CI Feedback](patterns/background-agent-ci.md) <span class='updated-badge'>UPDATED</span>
-- [Coding Agent CI Feedback Loop](patterns/coding-agent-ci-feedback-loop.md) <span class='updated-badge'>UPDATED</span>
-- [Dogfooding with Rapid Iteration for Agent Improvement](patterns/dogfooding-with-rapid-iteration-for-agent-improvement.md) <span class='updated-badge'>UPDATED</span>
-- [Graph of Thoughts (GoT)](patterns/graph-of-thoughts.md) <span class='updated-badge'>UPDATED</span>
-- [Incident-to-Eval Synthesis](patterns/incident-to-eval-synthesis.md) <span class='new-badge'>NEW</span>
-- [Inference-Healed Code Review Reward](patterns/inference-healed-code-review-reward.md) <span class='updated-badge'>UPDATED</span>
-- [Iterative Prompt & Skill Refinement](patterns/iterative-prompt-skill-refinement.md)
-- [Reflection Loop](patterns/reflection.md) <span class='updated-badge'>UPDATED</span>
-- [Rich Feedback Loops > Perfect Prompts](patterns/rich-feedback-loops.md) <span class='updated-badge'>UPDATED</span>
-- [Self-Critique Evaluator Loop](patterns/self-critique-evaluator-loop.md) <span class='updated-badge'>UPDATED</span>
-- [Self-Discover: LLM Self-Composed Reasoning Structures](patterns/self-discover-reasoning-structures.md) <span class='updated-badge'>UPDATED</span>
-- [Spec-As-Test Feedback Loop](patterns/spec-as-test-feedback-loop.md) <span class='updated-badge'>UPDATED</span>
-- [Tool Use Incentivization via Reward Shaping](patterns/tool-use-incentivization-via-reward-shaping.md) <span class='updated-badge'>UPDATED</span>
-
-### <a name="learning-adaptation"></a>Learning & Adaptation
-
-- [Agent Reinforcement Fine-Tuning (Agent RFT)](patterns/agent-reinforcement-fine-tuning.md)
-- [Compounding Engineering Pattern](patterns/compounding-engineering-pattern.md)
-- [Frontier-Focused Development](patterns/frontier-focused-development.md)
-- [Memory Reinforcement Learning (MemRL)](patterns/memory-reinforcement-learning-memrl.md)
-- [Shipping as Research](patterns/shipping-as-research.md)
-- [Skill Library Evolution](patterns/skill-library-evolution.md)
-- [Variance-Based RL Sample Selection](patterns/variance-based-rl-sample-selection.md)
-
-### <a name="orchestration-control"></a>Orchestration & Control
-
-- [Action-Selector Pattern](patterns/action-selector-pattern.md) <span class='updated-badge'>UPDATED</span>
-- [Agent Modes by Model Personality](patterns/agent-modes-by-model-personality.md)
-- [Agent-Driven Research](patterns/agent-driven-research.md) <span class='updated-badge'>UPDATED</span>
-- [Autonomous Workflow Agent Architecture](patterns/autonomous-workflow-agent-architecture.md)
-- [Budget-Aware Model Routing with Hard Cost Caps](patterns/budget-aware-model-routing-with-hard-cost-caps.md) <span class='new-badge'>NEW</span>
-- [Burn the Boats](patterns/burn-the-boats.md)
-- [Conditional Parallel Tool Execution](patterns/parallel-tool-execution.md) <span class='updated-badge'>UPDATED</span>
-- [Continuous Autonomous Task Loop Pattern](patterns/continuous-autonomous-task-loop-pattern.md) <span class='updated-badge'>UPDATED</span>
-- [Custom Sandboxed Background Agent](patterns/custom-sandboxed-background-agent.md)
-- [Discrete Phase Separation](patterns/discrete-phase-separation.md)
-- [Disposable Scaffolding Over Durable Features](patterns/disposable-scaffolding-over-durable-features.md) <span class='updated-badge'>UPDATED</span>
-- [Distributed Execution with Cloud Workers](patterns/distributed-execution-cloud-workers.md)
-- [Dual LLM Pattern](patterns/dual-llm-pattern.md) <span class='updated-badge'>UPDATED</span>
-- [Explicit Posterior-Sampling Planner](patterns/explicit-posterior-sampling-planner.md) <span class='updated-badge'>UPDATED</span>
-- [Factory over Assistant](patterns/factory-over-assistant.md)
-- [Feature List as Immutable Contract](patterns/feature-list-as-immutable-contract.md)
-- [Hybrid LLM/Code Workflow Coordinator](patterns/hybrid-llm-code-workflow-coordinator.md)
-- [Inference-Time Scaling](patterns/inference-time-scaling.md) <span class='updated-badge'>UPDATED</span>
-- [Initializer-Maintainer Dual Agent Architecture](patterns/initializer-maintainer-dual-agent.md)
-- [Inversion of Control](patterns/inversion-of-control.md) <span class='updated-badge'>UPDATED</span>
-- [Iterative Multi-Agent Brainstorming](patterns/iterative-multi-agent-brainstorming.md) <span class='updated-badge'>UPDATED</span>
-- [Lane-Based Execution Queueing](patterns/lane-based-execution-queueing.md)
-- [Language Agent Tree Search (LATS)](patterns/language-agent-tree-search-lats.md) <span class='updated-badge'>UPDATED</span>
-- [LLM Map-Reduce Pattern](patterns/llm-map-reduce-pattern.md) <span class='updated-badge'>UPDATED</span>
-- [Multi-Model Orchestration for Complex Edits](patterns/multi-model-orchestration-for-complex-edits.md) <span class='updated-badge'>UPDATED</span>
-- [Opponent Processor / Multi-Agent Debate Pattern](patterns/opponent-processor-multi-agent-debate.md)
-- [Oracle and Worker Multi-Model Approach](patterns/oracle-and-worker-multi-model.md) <span class='updated-badge'>UPDATED</span>
-- [Parallel Tool Call Learning](patterns/parallel-tool-call-learning.md)
-- [Plan-Then-Execute Pattern](patterns/plan-then-execute-pattern.md) <span class='updated-badge'>UPDATED</span>
-- [Planner-Worker Separation for Long-Running Agents](patterns/planner-worker-separation-for-long-running-agents.md)
-- [Progressive Autonomy with Model Evolution](patterns/progressive-autonomy-with-model-evolution.md) <span class='updated-badge'>UPDATED</span>
-- [Progressive Complexity Escalation](patterns/progressive-complexity-escalation.md)
-- [Recursive Best-of-N Delegation](patterns/recursive-best-of-n-delegation.md)
-- [Self-Rewriting Meta-Prompt Loop](patterns/self-rewriting-meta-prompt-loop.md) <span class='updated-badge'>UPDATED</span>
-- [Specification-Driven Agent Development](patterns/specification-driven-agent-development.md) <span class='updated-badge'>UPDATED</span>
-- [Stop Hook Auto-Continue Pattern](patterns/stop-hook-auto-continue-pattern.md)
-- [Sub-Agent Spawning](patterns/sub-agent-spawning.md)
-- [Subject Hygiene for Task Delegation](patterns/subject-hygiene.md)
-- [Swarm Migration Pattern](patterns/swarm-migration-pattern.md)
-- [Three-Stage Perception Architecture](patterns/three-stage-perception-architecture.md) <span class='updated-badge'>UPDATED</span>
-- [Tool Capability Compartmentalization](patterns/tool-capability-compartmentalization.md) <span class='updated-badge'>UPDATED</span>
-- [Tool Selection Guide](patterns/tool-selection-guide.md)
-- [Tree-of-Thought Reasoning](patterns/tree-of-thought-reasoning.md) <span class='updated-badge'>UPDATED</span>
-- [Workspace-Native Multi-Agent Orchestration](patterns/workspace-native-multi-agent-orchestration.md) <span class='new-badge'>NEW</span>
-
-### <a name="reliability-eval"></a>Reliability & Eval
-
-- [Action Caching & Replay Pattern](patterns/action-caching-replay.md)
-- [Adaptive Sandbox Fan-Out Controller](patterns/adaptive-sandbox-fanout-controller.md)
-- [Anti-Reward-Hacking Grader Design](patterns/anti-reward-hacking-grader-design.md)
-- [Asynchronous Coding Agent Pipeline](patterns/asynchronous-coding-agent-pipeline.md) <span class='updated-badge'>UPDATED</span>
-- [Canary Rollout and Automatic Rollback for Agent Policy Changes](patterns/canary-rollout-and-automatic-rollback-for-agent-policy-changes.md) <span class='new-badge'>NEW</span>
-- [CriticGPT-Style Code Review](patterns/criticgpt-style-evaluation.md) <span class='updated-badge'>UPDATED</span>
-- [Extended Coherence Work Sessions](patterns/extended-coherence-work-sessions.md) <span class='updated-badge'>UPDATED</span>
-- [Failover-Aware Model Fallback](patterns/failover-aware-model-fallback.md)
-- [Lethal Trifecta Threat Model](patterns/lethal-trifecta-threat-model.md) <span class='updated-badge'>UPDATED</span>
-- [LLM Observability](patterns/llm-observability.md)
-- [Merged Code + Language Skill Model](patterns/merged-code-language-skill-model.md) <span class='updated-badge'>UPDATED</span>
-- [No-Token-Limit Magic](patterns/no-token-limit-magic.md) <span class='updated-badge'>UPDATED</span>
-- [Reliability Problem Map Checklist for RAG and Agents](patterns/wfgy-reliability-problem-map.md) <span class='new-badge'>NEW</span>
-- [RLAIF (Reinforcement Learning from AI Feedback)](patterns/rlaif-reinforcement-learning-from-ai-feedback.md) <span class='updated-badge'>UPDATED</span>
-- [Schema Validation Retry with Cross-Step Learning](patterns/schema-validation-retry-cross-step-learning.md)
-- [Structured Output Specification](patterns/structured-output-specification.md)
-- [Versioned Constitution Governance](patterns/versioned-constitution-governance.md) <span class='updated-badge'>UPDATED</span>
-- [Workflow Evals with Mocked Tools](patterns/workflow-evals-with-mocked-tools.md)
-
-### <a name="security-safety"></a>Security & Safety
-
-- [Deterministic Security Scanning Build Loop](patterns/deterministic-security-scanning-build-loop.md) <span class='updated-badge'>UPDATED</span>
-- [External Credential Sync](patterns/external-credential-sync.md)
-- [Hook-Based Safety Guard Rails for Autonomous Code Agents](patterns/hook-based-safety-guard-rails.md) <span class='updated-badge'>UPDATED</span>
-- [Isolated VM per RL Rollout](patterns/isolated-vm-per-rl-rollout.md)
-- [Non-Custodial Spending Controls](patterns/non-custodial-spending-controls.md) <span class='new-badge'>NEW</span>
-- [PII Tokenization](patterns/pii-tokenization.md) <span class='updated-badge'>UPDATED</span>
-- [Sandboxed Tool Authorization](patterns/sandboxed-tool-authorization.md)
-- [Soulbound Identity Verification](patterns/soulbound-identity-verification.md) <span class='new-badge'>NEW</span>
-- [Zero-Trust Agent Mesh](patterns/zero-trust-agent-mesh.md) <span class='new-badge'>NEW</span>
-
-### <a name="tool-use-environment"></a>Tool Use & Environment
-
-- [Agent SDK for Programmatic Control](patterns/agent-sdk-for-programmatic-control.md) <span class='updated-badge'>UPDATED</span>
-- [Agent-First Tooling and Logging](patterns/agent-first-tooling-and-logging.md) <span class='updated-badge'>UPDATED</span>
-- [Agentic Search Over Vector Embeddings](patterns/agentic-search-over-vector-embeddings.md)
-- [AI Web Search Agent Loop](patterns/ai-web-search-agent-loop.md)
-- [CLI-First Skill Design](patterns/cli-first-skill-design.md) <span class='updated-badge'>UPDATED</span>
-- [CLI-Native Agent Orchestration](patterns/cli-native-agent-orchestration.md) <span class='updated-badge'>UPDATED</span>
-- [Code Mode MCP Tool Interface Improvement Pattern](patterns/code-first-tool-interface-pattern.md) <span class='updated-badge'>UPDATED</span>
-- [Code-Over-API Pattern](patterns/code-over-api-pattern.md) <span class='updated-badge'>UPDATED</span>
-- [Code-Then-Execute Pattern](patterns/code-then-execute-pattern.md) <span class='updated-badge'>UPDATED</span>
-- [Dual-Use Tool Design](patterns/dual-use-tool-design.md)
-- [Dynamic Code Injection (On-Demand File Fetch)](patterns/dynamic-code-injection-on-demand-file-fetch.md) <span class='updated-badge'>UPDATED</span>
-- [Egress Lockdown (No-Exfiltration Channel)](patterns/egress-lockdown-no-exfiltration-channel.md) <span class='updated-badge'>UPDATED</span>
-- [Intelligent Bash Tool Execution](patterns/intelligent-bash-tool-execution.md)
-- [LLM-Friendly API Design](patterns/llm-friendly-api-design.md) <span class='updated-badge'>UPDATED</span>
-- [Multi-Platform Communication Aggregation](patterns/multi-platform-communication-aggregation.md) <span class='updated-badge'>UPDATED</span>
-- [Multi-Platform Webhook Triggers](patterns/multi-platform-webhook-triggers.md)
-- [Patch Steering via Prompted Tool Selection](patterns/patch-steering-via-prompted-tool-selection.md) <span class='updated-badge'>UPDATED</span>
-- [Progressive Tool Discovery](patterns/progressive-tool-discovery.md) <span class='updated-badge'>UPDATED</span>
-- [Shell Command Contextualization](patterns/shell-command-contextualization.md) <span class='updated-badge'>UPDATED</span>
-- [Subagent Compilation Checker](patterns/subagent-compilation-checker.md) <span class='updated-badge'>UPDATED</span>
-- [Tool Use Steering via Prompting](patterns/tool-use-steering-via-prompting.md) <span class='updated-badge'>UPDATED</span>
-- [Virtual Machine Operator Agent](patterns/virtual-machine-operator-agent.md) <span class='updated-badge'>UPDATED</span>
-- [Visual AI Multimodal Integration](patterns/visual-ai-multimodal-integration.md) <span class='updated-badge'>UPDATED</span>
-
-### <a name="ux-collaboration"></a>UX & Collaboration
-
-- [Abstracted Code Representation for Review](patterns/abstracted-code-representation-for-review.md) <span class='updated-badge'>UPDATED</span>
-- [Agent-Assisted Scaffolding](patterns/agent-assisted-scaffolding.md) <span class='updated-badge'>UPDATED</span>
-- [Agent-Friendly Workflow Design](patterns/agent-friendly-workflow-design.md) <span class='updated-badge'>UPDATED</span>
-- [AI-Accelerated Learning and Skill Development](patterns/ai-accelerated-learning-and-skill-development.md) <span class='updated-badge'>UPDATED</span>
-- [Chain-of-Thought Monitoring & Interruption](patterns/chain-of-thought-monitoring-interruption.md)
-- [Codebase Optimization for Agents](patterns/codebase-optimization-for-agents.md)
-- [Democratization of Tooling via Agents](patterns/democratization-of-tooling-via-agents.md) <span class='updated-badge'>UPDATED</span>
-- [Dev Tooling Assumptions Reset](patterns/dev-tooling-assumptions-reset.md)
-- [Human-in-the-Loop Approval Framework](patterns/human-in-loop-approval-framework.md)
-- [Latent Demand Product Discovery](patterns/latent-demand-product-discovery.md)
-- [Milestone Escrow for Agent Resource Funding](patterns/agentfund-crowdfunding.md) <span class='new-badge'>NEW</span>
-- [Proactive Trigger Vocabulary](patterns/proactive-trigger-vocabulary.md) <span class='updated-badge'>UPDATED</span>
-- [Seamless Background-to-Foreground Handoff](patterns/seamless-background-to-foreground-handoff.md) <span class='updated-badge'>UPDATED</span>
-- [Spectrum of Control / Blended Initiative](patterns/spectrum-of-control-blended-initiative.md) <span class='updated-badge'>UPDATED</span>
-- [Team-Shared Agent Configuration as Code](patterns/team-shared-agent-configuration.md)
-- [Verbose Reasoning Transparency](patterns/verbose-reasoning-transparency.md) <span class='updated-badge'>UPDATED</span>
-
-<!-- AUTO-GENERATED PATTERNS END -->
-
-<!-- …existing content below… -->
+### Episodic Memory
+- **Description**: Store and recall specific experiences or interactions
+- **Use Case**: Learning from past mistakes, personalizing responses
+- **Example**: Log successful/unsuccessful tool calls for future reference
+- **Reference**: [MemGPT](https://github.com/cpacker/MemGPT)
 
 ---
 
-## Contributing in 3 steps
+## Feedback Loops
 
-1. **Fork & branch** → `git checkout -b add-my-pattern`
-2. **Add a pattern file** under `patterns/` using the template above.
-3. **Open a PR** titled `Add: my-pattern-name` — the README & site will regenerate automatically.
-4. This repository is pattern-first: proposals that are primarily product announcements or promotions will be rejected, even if technically valid.
+Patterns for incorporating feedback to improve agent performance.
 
-See [`CONTRIBUTING.md`](https://github.com/nibzard/awesome-agentic-patterns/blob/main/CONTRIBUTING.md) for the fine print.
+### Compiler Feedback
+- **Description**: Use compilation errors to fix code generation
+- **Use Case**: Self-healing code writing agents
+- **Example**: Generate code → compile → if error, feed error back to LLM → retry
+
+### CI/CD Integration
+- **Description**: Automated testing and deployment feedback
+- **Use Case**: Agents that write and deploy code
+- **Example**: Run tests on generated code, report failures to agent
+
+### Human Review Loop
+- **Description**: Incorporate human feedback into agent decisions
+- **Use Case**: High-stakes decisions requiring human oversight
+- **Example**: Propose action → wait for approval → execute
+
+### Self-Healing Retries
+- **Description**: Automatic retry with exponential backoff and error analysis
+- **Use Case**: Resilient API calling, web scraping
+- **Example**: Failed request → analyze error → adjust parameters → retry
 
 ---
 
-## Inspiration
+## Learning & Adaptation
 
-This project started after the write‑up [**"What Sourcegraph learned building AI coding agents"**](https://www.nibzard.com/ampcode) (28 May 2025) and the ongoing *Raising an Agent* video diary. Many first patterns come straight from those lessons — thanks to everyone sharing their journey in the open!
+Patterns for agents that learn and improve over time.
+
+### Agent RFT (Reinforcement Learning from Feedback)
+- **Description**: Train agents using reinforcement learning from human or automated feedback
+- **Use Case**: Aligning agent behavior with user preferences
+- **Reference**: [RLHF](https://huggingface.co/blog/rlhf), [Direct Preference Optimization](https://github.com/eric-mitchell/direct-preference-optimization)
+
+### Skill Libraries
+- **Description**: Accumulate reusable skills or tools over time
+- **Use Case**: Agents that grow more capable through experience
+- **Example**: Successfully solve problem → extract reusable function → add to toolkit
+- **Reference**: [Voyager](https://github.com/MineDojo/Voyager)
+
+### Variance-Based RL
+- **Description**: Explore actions with high uncertainty to maximize learning
+- **Use Case**: Efficient exploration in unknown environments
+- **Reference**: [UCB Algorithms](https://arxiv.org/abs/0912.3995)
+
+---
+
+## Orchestration & Control
+
+Patterns for managing multiple agents and complex workflows.
+
+### Task Decomposition
+- **Description**: Break complex tasks into manageable subtasks
+- **Use Case**: Multi-step problem solving
+- **Example**: "Build a website" → design → frontend → backend → deploy
+- **Reference**: [Plan-and-Solve Prompting](https://arxiv.org/abs/2305.04091)
+
+### Sub-Agent Spawning
+- **Description**: Create specialized sub-agents for specific tasks
+- **Use Case**: Parallel execution, specialized expertise
+- **Example**: Main agent spawns research agent + coding agent + review agent
+- **Reference**: [AutoGen](https://github.com/microsoft/autogen), [CrewAI](https://github.com/joaomdmoura/crewAI)
+
+### Tool Routing
+- **Description**: Dynamically select appropriate tools for tasks
+- **Use Case**: Agents with large tool sets
+- **Example**: Vector search over tool descriptions → select top-k → execute
+
+### Hierarchical Planning
+- **Description**: Multi-level planning from high-level goals to concrete actions
+- **Use Case**: Long-horizon tasks requiring strategic thinking
+- **Example**: Mission → objectives → tasks → actions
+
+---
+
+## Reliability & Eval
+
+Patterns for ensuring agent reliability and evaluation.
+
+### Guardrails
+- **Description**: Safety constraints and validation layers
+- **Use Case**: Prevent harmful or incorrect actions
+- **Example**: Output validation, input sanitization, action approval gates
+- **Tools**: [Guardrails AI](https://github.com/guardrails-ai/guardrails), [NeMo Guardrails](https://github.com/NVIDIA/NeMo-Guardrails)
+
+### Eval Harnesses
+- **Description**: Standardized evaluation frameworks
+- **Use Case**: Benchmarking agent performance
+- **Example**: [AgentBench](https://github.com/THUDM/AgentBench), [WebArena](https://github.com/web-arena/web-arena)
+
+### Structured Logging
+- **Description**: Comprehensive logging of agent decisions and actions
+- **Use Case**: Debugging, auditing, post-hoc analysis
+- **Example**: Log all LLM calls, tool executions, and state changes
+
+### Reproducibility
+- **Description**: Ensure deterministic behavior when needed
+- **Use Case**: Debugging, testing, compliance
+- **Example**: Seed randomness, log all random choices, version dependencies
+
+---
+
+## Security & Safety
+
+Patterns for secure and safe agent operation.
+
+### Isolated VMs
+- **Description**: Run agents in sandboxed environments
+- **Use Case**: Untrusted code execution, security research
+- **Tools**: [E2B](https://e2b.dev/), [Docker](https://www.docker.com/), [Firecracker](https://firecracker-microvm.github.io/)
+
+### PII Tokenization
+- **Description**: Automatically detect and redact personally identifiable information
+- **Use Case**: Privacy-preserving agent interactions
+- **Example**: Replace emails, phone numbers with tokens before LLM processing
+
+### Security Scanning
+- **Description**: Scan generated code and actions for vulnerabilities
+- **Use Case**: Safe code generation
+- **Tools**: [Bandit](https://bandit.readthedocs.io/), [Semgrep](https://semgrep.dev/)
+
+### Capability Constraints
+- **Description**: Limit what actions an agent can perform
+- **Use Case**: Principle of least privilege
+- **Example**: Read-only filesystem, restricted network access, limited tool set
+
+---
+
+## Tool Use & Environment
+
+Patterns for interacting with external tools and environments.
+
+### Shell Integration
+- **Description**: Execute shell commands safely
+- **Use Case**: System administration, development tasks
+- **Safety**: Command validation, dry-run mode, allowlists
+
+### Browser Automation
+- **Description**: Control web browsers programmatically
+- **Use Case**: Web scraping, testing, form filling
+- **Tools**: [Playwright](https://playwright.dev/), [Selenium](https://www.selenium.dev/), [Puppeteer](https://pptr.dev/)
+
+### Database Interaction
+- **Description**: Query and modify databases
+- **Use Case**: Data analysis, application development
+- **Safety**: Read-only modes, query validation, prepared statements
+
+### Code Execution
+- **Description**: Safely execute generated code
+- **Use Case**: Data analysis, algorithm implementation
+- **Tools**: [Jupyter](https://jupyter.org/), [Code Interpreter API](https://platform.openai.com/docs/assistants/tools/code-interpreter)
+
+### Sandboxing
+- **Description**: Restricted execution environments
+- **Use Case**: Safe execution of untrusted code
+- **Tools**: [gVisor](https://gvisor.dev/), [seccomp](https://man7.org/linux/man-pages/man2/seccomp.2.html)
+
+---
+
+## UX & Collaboration
+
+Patterns for human-agent interaction and collaboration.
+
+### Prompt Hand-offs
+- **Description**: Seamless transfer between different agent modes or personas
+- **Use Case**: Multi-domain expertise, escalation paths
+- **Example**: General assistant → specialized coding agent → human expert
+
+### Staged Commits
+- **Description**: Preview changes before finalizing
+- **Use Case**: Preventing irreversible actions
+- **Example**: "I'll make these changes. Review and approve?"
+
+### Async Background Agents
+- **Description**: Agents that work independently and report back
+- **Use Case**: Long-running tasks, monitoring
+- **Example**: "Research this topic and email me a summary in 1 hour"
+
+### Progressive Disclosure
+- **Description**: Start with high-level summary, allow drilling down
+- **Use Case**: Managing information overload
+- **Example**: Summary → key points → full details → raw data
+
+### Confidence Indicators
+- **Description**: Communicate uncertainty in agent responses
+- **Use Case**: Appropriate trust calibration
+- **Example**: Confidence scores, "I'm not sure, but...", citation of sources
+
+---
+
+## Contributing
+
+Contributions are welcome! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
+
+### Quick Start
+
+1. Fork the repository
+2. Create a new branch: `git checkout -b add-new-pattern`
+3. Add your pattern with examples and references
+4. Submit a Pull Request
+
+### Pattern Template
+
+When adding a new pattern, please use this template:
+
+```markdown
+### Pattern Name
+- **Description**: Brief explanation of the pattern
+- **Use Case**: When to use this pattern
+- **Example**: Concrete example or pseudo-code
+- **Reference**: Links to papers, implementations, or documentation
+```
+
+---
+
+## Related Resources
+
+### Libraries & Frameworks
+- [LangChain](https://github.com/langchain-ai/langchain) - Building applications with LLMs
+- [AutoGen](https://github.com/microsoft/autogen) - Multi-agent conversation framework
+- [CrewAI](https://github.com/joaomdmoura/crewAI) - Multi-agent orchestration
+- [LlamaIndex](https://github.com/run-llama/llama_index) - Data framework for LLMs
+
+### Research Papers
+- [ReAct: Synergizing Reasoning and Acting in Language Models](https://arxiv.org/abs/2210.03629)
+- [Reflexion: Self-Reflective Agents](https://arxiv.org/abs/2303.11366)
+- [Generative Agents: Interactive Simulacra of Human Behavior](https://arxiv.org/abs/2304.03442)
+
+### Other Awesome Lists
+- [Awesome LLM Apps](https://github.com/Shubhamsaboo/awesome-llm-apps)
+- [Awesome AI Agents](https://github.com/e2b-dev/awesome-ai-agents)
+- [Awesome LangChain](https://github.com/kyrolabs/awesome-langchain)
 
 ---
 
 ## License
 
-Apache‑2.0. See [`LICENSE`](https://github.com/nibzard/awesome-agentic-patterns/blob/main/LICENSE).
+This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=nibzard/awesome-agentic-patterns&type=date&legend=top-left)](https://www.star-history.com/#nibzard/awesome-agentic-patterns&type=date&legend=top-left)
+<p align="center">
+  <i>Built with 🤖 by the AI agent community</i>
+</p>
